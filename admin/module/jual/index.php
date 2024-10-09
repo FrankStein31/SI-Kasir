@@ -10,7 +10,7 @@
 	<br>
 	<?php if(isset($_GET['success'])){?>
 	<div class="alert alert-success">
-		<p>Edit Data Berhasil !</p>
+		<p>Data di Masukan Ke Keranjang !</p>
 	</div>
 	<?php }?>
 	<?php if(isset($_GET['remove'])){?>
@@ -25,7 +25,7 @@
 					<h5><i class="fa fa-search"></i> Cari Produk</h5>
 				</div>
 				<div class="card-body">
-					<input type="text" id="cari" class="form-control" name="cari" placeholder="Masukan : Kode / Nama Barang  [ENTER]">
+					<input type="text" id="cari" class="form-control" name="cari" placeholder="Masukan : Kode / Nama Barang  [ENTER]" autocomplete="off">
 				</div>
 			</div>
 		</div>
