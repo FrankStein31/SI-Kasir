@@ -1,4 +1,4 @@
-SI Kasir php 8 keatas, native 
+SI Kasir php>=8, native 
 ![image](https://github.com/user-attachments/assets/544a2a85-446a-4ef1-8dc2-f0314c4b3baa)
 ![image](https://github.com/user-attachments/assets/663046e0-0412-4dd2-a690-d7aef3e1bd8a)
 ![image](https://github.com/user-attachments/assets/216026a6-1b83-416b-a02d-307b94a5015a)
