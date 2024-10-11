@@ -23,6 +23,7 @@ if (!empty($_SESSION['admin'])) {
         $jual = $_POST['jual'];
         $satuan = $_POST['satuan'];
         $stok = $_POST['stok'];
+        $expired = $_POST['expired'];
         $tgl = $_POST['tgl'];
 
         $data[] = $id;
@@ -33,9 +34,10 @@ if (!empty($_SESSION['admin'])) {
         $data[] = $jual;
         $data[] = $satuan;
         $data[] = $stok;
+        $data[] = $expired;
         $data[] = $tgl;
-        $sql = 'INSERT INTO barang (id_barang,id_kategori,nama_barang,merk,harga_beli,harga_jual,satuan_barang,stok,tgl_input) 
-			    VALUES (?,?,?,?,?,?,?,?,?) ';
+        $sql = 'INSERT INTO barang (id_barang,id_kategori,nama_barang,merk,harga_beli,harga_jual,satuan_barang,stok,expired,tgl_input) 
+			    VALUES (?,?,?,?,?,?,?,?,?,?) ';
         $row = $config -> prepare($sql);
         $row -> execute($data);
         echo '<script>window.location="../../index.php?page=barang&success=tambah-data"</script>';
