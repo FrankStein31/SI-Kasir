@@ -77,21 +77,17 @@ if (!empty($_SESSION['admin'])) {
         echo '<script>window.location="../../index.php?page=barang/edit&barang='.$id.'&success=edit-data"</script>';
     }
     if (!empty($_GET['emoney'])) {
-        // Mengambil nilai dari form
         $id = htmlentities($_POST['id']);
         $nim = htmlentities($_POST['nim']);
         $nama = htmlentities($_POST['nama']);
         $saldo = htmlentities($_POST['saldo']);
         
-        // Lakukan query UPDATE
         $sql = 'UPDATE emoney SET nim=?, nama=?, saldo=? WHERE id=?';
         $row = $config->prepare($sql);
         
-        // Mengisi data dalam urutan yang sesuai dengan query
         $data = [$nim, $nama, $saldo, $id];
         $row->execute($data);
     
-        // Redirect kembali ke halaman utama atau halaman detail dengan ID yang sesuai
         echo '<script>window.location="../../index.php?page=emoney/edit&emoney='.$id.'&success=edit-data"</script>';
     }
     

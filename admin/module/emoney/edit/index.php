@@ -19,7 +19,6 @@
 		<table class="table table-striped">
 			<form action="fungsi/edit/edit.php?emoney=edit" method="POST">
 			<input type="hidden" name="id" value="<?php echo $hasil['id']; ?>"> 
-			<!-- terbaru -->
 				<tr>
 					<td>NIM</td>
 					<td><input type="text" class="form-control" value="<?php echo $hasil['nim'];?>" name="nim"></td>
