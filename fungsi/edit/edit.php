@@ -22,12 +22,10 @@ if (!empty($_SESSION['admin'])) {
 
     if (!empty($_GET['kategori'])) {
         $nama= htmlentities($_POST['kategori']);
-        $tgl= date("Y-m-d H:i:s");
         $id= htmlentities($_POST['id']);
         $data[] = $nama;
-        $data[] = $tgl;
         $data[] = $id;
-        $sql = 'UPDATE kategori SET  nama_kategori=?, tgl_input=? WHERE id_kategori=?';
+        $sql = 'UPDATE kategori SET  nama_kategori=? WHERE id_kategori=?';
         $row = $config -> prepare($sql);
         $row -> execute($data);
         echo '<script>window.location="../../index.php?page=kategori&uid='.$id.'&success-edit=edit-data"</script>';
@@ -79,21 +77,24 @@ if (!empty($_SESSION['admin'])) {
         echo '<script>window.location="../../index.php?page=barang/edit&barang='.$id.'&success=edit-data"</script>';
     }
     if (!empty($_GET['emoney'])) {
+        // Mengambil nilai dari form
+        $id = htmlentities($_POST['id']);
         $nim = htmlentities($_POST['nim']);
         $nama = htmlentities($_POST['nama']);
-        $foto = htmlentities($_POST['foto']);
         $saldo = htmlentities($_POST['saldo']);
-
-        $data[] = $nim;
-        $data[] = $nama;
-        $data[] = $foto;
-        $data[] = $saldo;
-        $sql = 'UPDATE emoney SET nim=?, nama=?, 
-				foto=?, saldo=? WHERE id=?';
-        $row = $config -> prepare($sql);
-        $row -> execute($data);
+        
+        // Lakukan query UPDATE
+        $sql = 'UPDATE emoney SET nim=?, nama=?, saldo=? WHERE id=?';
+        $row = $config->prepare($sql);
+        
+        // Mengisi data dalam urutan yang sesuai dengan query
+        $data = [$nim, $nama, $saldo, $id];
+        $row->execute($data);
+    
+        // Redirect kembali ke halaman utama atau halaman detail dengan ID yang sesuai
         echo '<script>window.location="../../index.php?page=emoney/edit&emoney='.$id.'&success=edit-data"</script>';
     }
+    
 
     if (!empty($_GET['gambar'])) {
         $id = htmlentities($_POST['id']);

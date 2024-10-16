@@ -5,7 +5,7 @@ if (!empty($_SESSION['admin'])) {
     require '../../config.php';
     if (!empty($_GET['kategori'])) {
         $nama= $_POST['kategori'];
-        $tgl= date("Y-m-d H:i:s");
+        $tgl= date("j F Y, G:i");
         $data[] = $nama;
         $data[] = $tgl;
         $sql = 'INSERT INTO kategori (nama_kategori,tgl_input) VALUES(?,?)';

@@ -260,12 +260,23 @@ class view
         return $hasil;
     }
 
-    public function emoney_edit($id)
+    public function emoney()
     {
-        $sql = "select*from emoney where id=?";
+        $sql = "select emoney.*, emoney.id, emoney.nama
+                from emoney inner join emoney on emoney.id = emoney.id 
+                ORDER BY id DESC";
         $row = $this-> db -> prepare($sql);
-        $row -> execute(array($id));
-        $hasil = $row -> fetch();
+        $row -> execute();
+        $hasil = $row -> fetchAll();
         return $hasil;
     }
+
+    public function emoney_edit($id)
+{
+    $sql = "SELECT * FROM emoney WHERE id = ?";
+    $row = $this->db->prepare($sql);
+    $row->execute([$id]);
+    return $row->fetch(PDO::FETCH_ASSOC);
+}
+
 }
