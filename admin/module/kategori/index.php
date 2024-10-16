@@ -72,7 +72,7 @@
                         <a href="index.php?page=kategori&uid=<?php echo $isi['id_kategori'];?>"><button
                                 class="btn btn-warning">Edit</button></a>
                         <a href="fungsi/hapus/hapus.php?kategori=hapus&id=<?php echo $isi['id_kategori'];?>"
-                            onclick="javascript:return confirm('Hapus Data Kategori ?');"><button
+                            onclick="javascript:return confirm('Hapus Data Kategori <?php echo $isi['nama_kategori'];?> ?');"><button
                                 class="btn btn-danger">Hapus</button></a>
                     </td>
                 </tr>

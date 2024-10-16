@@ -73,7 +73,7 @@
 				</tr>
 				<tr>
 					<td>Tanggal Update</td>
-					<td><input type="text" readonly="readonly" class="form-control" value="<?php echo  date("j F Y, G:i");?>"
+					<td><input type="text" readonly="readonly" class="form-control" value="<?php echo  date("Y-m-d H:i:s");?>"
 							name="tgl"></td>
 				</tr>
 				<tr>

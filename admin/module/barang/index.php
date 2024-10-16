@@ -51,10 +51,10 @@
                             <th>Nama Produk</th>
                             <th>Merk</th>
                             <th>Stok</th>
-                            <th>Expired</th>
                             <th>Harga Beli</th>
                             <th>Harga Jual</th>
                             <th>Satuan</th>
+                            <th>Expired</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -86,10 +86,10 @@
                                 <?php echo $isi['stok'];?>
                                 <?php }?>
                             </td>
-                            <td><?php echo $isi['expired'];?></td>
                             <td>Rp.<?php echo number_format($isi['harga_beli']);?>,-</td>
                             <td>Rp.<?php echo number_format($isi['harga_jual']);?>,-</td>
                             <td> <?php echo $isi['satuan_barang'];?></td>
+                            <td><?php echo $isi['expired'];?></td>
                             <td>
                                 <?php if($isi['stok'] <=  '3'){?>
                                 <form method="POST" action="fungsi/edit/edit.php?stok=edit">
@@ -100,7 +100,7 @@
                                         Restok
                                     </button>
                                     <a href="fungsi/hapus/hapus.php?barang=hapus&id=<?php echo $isi['id_barang'];?>"
-                                        onclick="javascript:return confirm('Hapus Data barang ?');">
+                                        onclick="javascript:return confirm('Hapus Data barang <?php echo $isi['nama_barang'];?> ?');">
                                         <button class="btn btn-danger btn-sm">Hapus</button></a>
                                 </form>
                                 <?php }else{?>
@@ -110,7 +110,7 @@
                                 <a href="index.php?page=barang/edit&barang=<?php echo $isi['id_barang'];?>"><button
                                         class="btn btn-warning btn-xs">Edit</button></a>
                                 <a href="fungsi/hapus/hapus.php?barang=hapus&id=<?php echo $isi['id_barang'];?>"
-                                    onclick="javascript:return confirm('Hapus Data barang ?');"><button
+                                    onclick="javascript:return confirm('Hapus Data barang <?php echo $isi['nama_barang'];?> ?');"><button
                                         class="btn btn-danger btn-xs">Hapus</button></a>
                                 <?php }?>
                         </tr>
@@ -212,7 +212,7 @@
                                 <tr>
                                     <td>Tanggal Input</td>
                                     <td><input type="text" required readonly="readonly" class="form-control"
-                                            value="<?php echo  date("j F Y, G:i");?>" name="tgl"></td>
+                                            value="<?php echo  date("Y-m-d H:i:s");?>" name="tgl"></td>
                                 </tr>
                             </table>
                         </div>

@@ -22,10 +22,12 @@ if (!empty($_SESSION['admin'])) {
 
     if (!empty($_GET['kategori'])) {
         $nama= htmlentities($_POST['kategori']);
+        $tgl= date("Y-m-d H:i:s");
         $id= htmlentities($_POST['id']);
         $data[] = $nama;
+        $data[] = $tgl;
         $data[] = $id;
-        $sql = 'UPDATE kategori SET  nama_kategori=? WHERE id_kategori=?';
+        $sql = 'UPDATE kategori SET  nama_kategori=?, tgl_input=? WHERE id_kategori=?';
         $row = $config -> prepare($sql);
         $row -> execute($data);
         echo '<script>window.location="../../index.php?page=kategori&uid='.$id.'&success-edit=edit-data"</script>';
