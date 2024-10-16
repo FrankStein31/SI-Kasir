@@ -106,12 +106,11 @@
                                 <?php }else{?>
                                 <a href="index.php?page=barang/details&barang=<?php echo $isi['id_barang'];?>"><button
                                         class="btn btn-primary btn-xs">Details</button></a>
-
                                 <a href="index.php?page=barang/edit&barang=<?php echo $isi['id_barang'];?>"><button
                                         class="btn btn-warning btn-xs">Edit</button></a>
                                 <a href="fungsi/hapus/hapus.php?barang=hapus&id=<?php echo $isi['id_barang'];?>"
                                     onclick="javascript:return confirm('Hapus Data barang <?php echo $isi['nama_barang'];?> ?');"><button
-                                        class="btn btn-danger btn-xs">Hapus</button></a>
+                                        class="btn btn-danger btn-xs">Delete</button></a>
                                 <?php }?>
                         </tr>
                         <?php 
