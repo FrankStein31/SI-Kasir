@@ -25,6 +25,7 @@
     <script src="sb-admin/vendor/jquery/jquery.min.js"></script>
     <script src="sb-admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <!-- Core plugin JavaScript-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="sb-admin/vendor/jquery-easing/jquery.easing.min.js"></script>
 </head>
 

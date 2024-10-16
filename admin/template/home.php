@@ -96,5 +96,57 @@
             </div>
         </div>
         <!--/grey-card -->
-    </div><!-- /col-md-3-->
+    </div>
+    
+
+    <!-- $row = $config->prepare($sql);
+$row->execute();
+$top_sold_items = $row->fetchAll(PDO::FETCH_ASSOC);
+
+$labels = [];
+$data = [];
+
+foreach ($top_sold_items as $item) {
+    $labels[] = $item['nama_barang'];
+    $data[] = (int) $item['total_sold'];
+} -->
+
+    <div class="col-md-12 mb-3">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h6 class="pt-2"><i class="fas fa-chart-bar"></i> Top Sold Products</h6>
+        </div>
+        <div class="card-body">
+            <canvas id="topSoldChart"></canvas>
+        </div>
+    </div>
+</div>
+<script>
+    var ctx = document.getElementById('topSoldChart').getContext('2d');
+    var topSoldChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: <?php echo json_encode($labels); ?>,
+            datasets: [{
+                label: 'Total Sold',
+                data: <?php echo json_encode($data); ?>,
+                backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    ticks: {
+                        stepSize: 1 // Set step size to 1 for whole numbers
+                    }
+                }
+            }
+        }
+    });
+</script>
+
+    <!-- /col-md-3-->
 </div>
