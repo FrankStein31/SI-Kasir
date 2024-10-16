@@ -68,10 +68,6 @@
 					<td><input type="number" class="form-control" value="<?php echo $hasil['stok'];?>" name="stok"></td>
 				</tr>
 				<tr>
-					<td>Expired</td>
-					<td><input type="date" class="form-control" value="<?php echo $hasil['expired'];?>" name="expired"></td>
-				</tr>
-				<tr>
 					<td>Tanggal Update</td>
 					<td><input type="text" readonly="readonly" class="form-control" value="<?php echo  date("Y-m-d H:i:s");?>"
 							name="tgl"></td>

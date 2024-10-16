@@ -55,10 +55,6 @@
 				<td><?php echo $hasil['stok'];?></td>
 			</tr>
 			<tr>
-				<td>Expired</td>
-				<td><?php echo $hasil['expired'];?></td>
-			</tr>
-			<tr>
 				<td>Tanggal Input</td>
 				<td><?php echo $hasil['tgl_input'];?></td>
 			</tr>

@@ -204,11 +204,6 @@
                                             name="stok"></td>
                                 </tr>
                                 <tr>
-                                    <td>Expired</td>
-                                    <td><input type="date" required Placeholder="Expired" class="form-control"
-                                            name="expired"></td>
-                                </tr>
-                                <tr>
                                     <td>Tanggal Input</td>
                                     <td><input type="text" required readonly="readonly" class="form-control"
                                             value="<?php echo  date("Y-m-d H:i:s");?>" name="tgl"></td>

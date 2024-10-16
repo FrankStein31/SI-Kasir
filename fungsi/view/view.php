@@ -259,4 +259,13 @@ class view
         $hasil = $row -> fetch();
         return $hasil;
     }
+
+    public function emoney_edit($id)
+    {
+        $sql = "select*from emoney where id=?";
+        $row = $this-> db -> prepare($sql);
+        $row -> execute(array($id));
+        $hasil = $row -> fetch();
+        return $hasil;
+    }
 }
