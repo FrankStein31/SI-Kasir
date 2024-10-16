@@ -60,11 +60,11 @@
 							<form class="form-login" method="POST">
 								<div class="form-group">
 									<input type="text" class="form-control form-control-user" name="user"
-										placeholder="User ID" autofocus>
+										placeholder="User ID" autofocus autocomplete="off">
 								</div>
 								<div class="form-group">
 									<input type="password" class="form-control form-control-user" name="pass"
-										placeholder="Password">
+										placeholder="Password" autocomplete="off">
 								</div>
 								<button class="btn btn-primary btn-block" name="proses" type="submit"><i
 										class="fa fa-lock"></i>
