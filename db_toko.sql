@@ -192,23 +192,6 @@ CREATE TABLE `toko` (
   `nama_pemilik` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
-
-CREATE TABLE emoney (
-  id INT(11) NOT NULL,
-  nim VARCHAR(20) NOT NULL,
-  nama VARCHAR(100) NOT NULL,
-  foto VARCHAR(255) NOT NULL,
-  saldo DECIMAL(10,2) NOT NULL
-) ENGINE=INNODB DEFAULT CHARSET=utf8mb4;
-
-ALTER TABLE emoney
-  ADD PRIMARY KEY (id);
-
-
-ALTER TABLE emoney
-  MODIFY id INT(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
-COMMIT;
-
 --
 -- Dumping data for table `toko`
 --
