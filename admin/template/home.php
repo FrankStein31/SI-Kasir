@@ -99,28 +99,40 @@
     </div>
     
 
-    <!-- $row = $config->prepare($sql);
-$row->execute();
-$top_sold_items = $row->fetchAll(PDO::FETCH_ASSOC);
+    <!-- Top Sold Products Chart -->
+    <?php
+    // Query untuk mendapatkan total jumlah terjual dan nama barang
+    $sql = "SELECT b.nama_barang, SUM(n.jumlah) AS total_jumlah 
+            FROM nota n 
+            JOIN barang b ON n.id_barang = b.id_barang 
+            GROUP BY b.nama_barang 
+            ORDER BY total_jumlah DESC 
+            LIMIT 10";
+    $row = $config->prepare($sql);
+    $row->execute();
+    $top_sold_items = $row->fetchAll(PDO::FETCH_ASSOC);
 
-$labels = [];
-$data = [];
+    $labels = [];
+    $data = [];
 
-foreach ($top_sold_items as $item) {
-    $labels[] = $item['nama_barang'];
-    $data[] = (int) $item['total_sold'];
-} -->
+    // Loop untuk mengisi array labels dan data
+    foreach ($top_sold_items as $item) {
+        $labels[] = $item['nama_barang']; // Menggunakan nama barang sebagai label
+        $data[] = (int) $item['total_jumlah'];
+    }
+?>
 
-    <div class="col-md-12 mb-3">
+<div class="col-md-12 mb-3">
     <div class="card">
         <div class="card-header bg-primary text-white">
             <h6 class="pt-2"><i class="fas fa-chart-bar"></i> Top Sold Products</h6>
         </div>
-        <div class="card-body">
-            <canvas id="topSoldChart"></canvas>
+        <div class="card-body" style="height: 600px;"> <!-- Menetapkan tinggi card -->
+            <canvas id="topSoldChart" style="width: 100%; height: 100%;"></canvas> <!-- Sesuaikan ukuran canvas -->
         </div>
     </div>
 </div>
+
 <script>
     var ctx = document.getElementById('topSoldChart').getContext('2d');
     var topSoldChart = new Chart(ctx, {
@@ -136,6 +148,7 @@ foreach ($top_sold_items as $item) {
             }]
         },
         options: {
+            maintainAspectRatio: false, // Disable default aspect ratio to allow canvas resizing
             scales: {
                 y: {
                     beginAtZero: true,
@@ -147,6 +160,7 @@ foreach ($top_sold_items as $item) {
         }
     });
 </script>
+
 
     <!-- /col-md-3-->
 </div>

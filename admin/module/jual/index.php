@@ -143,7 +143,10 @@
 											$row_stok = $config->prepare($sql_stok);
 											$row_stok->execute(array($total_stok, $idb));
 										}
-										echo '<script>alert("Belanjaan Berhasil Di Bayar !");</script>';
+										echo '<script>
+										alert("Belanjaan Berhasil Di Bayar !");
+										document.getElementById("kasirnya").reset(); // Reset form setelah pembayaran berhasil
+										</script>';
 									}else{
 										echo '<script>alert("Uang Kurang ! Rp.'.$hitung.'");</script>';
 									}
@@ -167,6 +170,7 @@
 									<td>Bayar  </td>
 									<td><input type="text" class="form-control" name="bayar" value="<?php echo $bayar;?>"></td>
 									<td><button class="btn btn-success"><i class="fa fa-shopping-cart"></i> Bayar</button>
+									<td><button class="btn btn-info"><i href="" class=""></i> Scan Qr</button>
 									<?php  if(!empty($_GET['nota'] == 'yes')) {?>
 										<a class="btn btn-danger" href="fungsi/hapus/hapus.php?penjualan=jual">
 										<b>RESET</b></a></td><?php }?></td>
