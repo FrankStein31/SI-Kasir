@@ -38,7 +38,7 @@ CREATE TABLE `barang` (
 /*Data for the table `barang` */
 
 insert  into `barang`(`id`,`id_barang`,`id_kategori`,`nama_barang`,`merk`,`harga_beli`,`harga_jual`,`satuan_barang`,`stok`,`tgl_input`,`tgl_update`) values 
-(10,'BR001',5,'Lemon Sky','-','0','20000','PCS','99999999999999','3 May 2024, 19:11','3 May 2024, 19:13'),
+(10,'BR001',5,'Lemon Sky','-','0','20000','PCS','99999999999993','3 May 2024, 19:11','3 May 2024, 19:13'),
 (11,'BR002',5,'Signature TJ','-','0','20000','PCS','99999999999999','3 May 2024, 19:11','2024-05-12'),
 (12,'BR003',5,'flychee','-','0','20000','PCS','99999999999999','2024-05-12','2024-05-12'),
 (13,'BR004',5,'Mango Paradice','-','0','20000','PCS','99999999999999','2024-05-12','2024-05-12'),
@@ -84,9 +84,13 @@ CREATE TABLE `emoney` (
   `foto` varchar(255) NOT NULL,
   `saldo` decimal(10,2) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `emoney` */
+
+insert  into `emoney`(`id`,`nim`,`nama`,`foto`,`saldo`) values 
+(5,'2131730071','Frankie Steinlie','1729560435_2131730071.JPG',20000.00),
+(7,'1111111111','Neru','1729561482_2131730093.jpg',100000.00);
 
 /*Table structure for table `kategori` */
 
@@ -158,9 +162,13 @@ CREATE TABLE `nota` (
   `tanggal_input` varchar(255) NOT NULL,
   `periode` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_nota`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 /*Data for the table `nota` */
+
+insert  into `nota`(`id_nota`,`id_barang`,`id_member`,`jumlah`,`total`,`tanggal_input`,`periode`) values 
+(19,'BR001',1,'3','60000','18 October 2024, 13:22','10-2024'),
+(20,'BR001',1,'3','60000','18 October 2024, 13:22','10-2024');
 
 /*Table structure for table `penjualan` */
 
@@ -174,7 +182,7 @@ CREATE TABLE `penjualan` (
   `total` varchar(255) NOT NULL,
   `tanggal_input` varchar(255) NOT NULL,
   PRIMARY KEY (`id_penjualan`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 /*Data for the table `penjualan` */
 
@@ -191,118 +199,33 @@ CREATE TABLE `toko` (
   PRIMARY KEY (`id_toko`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
-<<<<<<< HEAD
 /*Data for the table `toko` */
 
 insert  into `toko`(`id_toko`,`nama_toko`,`alamat_toko`,`tlp`,`nama_pemilik`) values 
 (1,'Kelompok 5','Malang','0000','');
 
+/*Table structure for table `validasi` */
+
+DROP TABLE IF EXISTS `validasi`;
+
+CREATE TABLE `validasi` (
+  `id_validasi` int(11) NOT NULL AUTO_INCREMENT,
+  `nim` varchar(255) DEFAULT NULL,
+  `nama` varchar(255) DEFAULT NULL,
+  `nominal` decimal(10,2) DEFAULT NULL,
+  `fotobukti` varchar(255) DEFAULT NULL,
+  `valid` tinyint(1) DEFAULT 0,
+  PRIMARY KEY (`id_validasi`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+/*Data for the table `validasi` */
+
+insert  into `validasi`(`id_validasi`,`nim`,`nama`,`nominal`,`fotobukti`,`valid`) values 
+(2,'2131730071','Frankie',20000.00,'foto',1),
+(3,'2131730071','Frankie Steinlie',10000.00,'1729561116_6717021c81730.JPG',2),
+(4,'1111111111','Neru',100000.00,'1729561501_6717039de6ac2.jpg',1);
+
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
 /*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-=======
---
--- Dumping data for table `toko`
---
-
-INSERT INTO `toko` (`id_toko`, `nama_toko`, `alamat_toko`, `tlp`, `nama_pemilik`) VALUES
-(1, 'Kedai Kopi Tanah Jawa', 'Malang', '0000', 'Tanah Jawa');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `barang`
---
-ALTER TABLE `barang`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `kategori`
---
-ALTER TABLE `kategori`
-  ADD PRIMARY KEY (`id_kategori`);
-
---
--- Indexes for table `login`
---
-ALTER TABLE `login`
-  ADD PRIMARY KEY (`id_login`);
-
---
--- Indexes for table `member`
---
-ALTER TABLE `member`
-  ADD PRIMARY KEY (`id_member`);
-
---
--- Indexes for table `nota`
---
-ALTER TABLE `nota`
-  ADD PRIMARY KEY (`id_nota`);
-
---
--- Indexes for table `penjualan`
---
-ALTER TABLE `penjualan`
-  ADD PRIMARY KEY (`id_penjualan`);
-
---
--- Indexes for table `toko`
---
-ALTER TABLE `toko`
-  ADD PRIMARY KEY (`id_toko`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `barang`
---
-ALTER TABLE `barang`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
-
---
--- AUTO_INCREMENT for table `kategori`
---
-ALTER TABLE `kategori`
-  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `login`
---
-ALTER TABLE `login`
-  MODIFY `id_login` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `member`
---
-ALTER TABLE `member`
-  MODIFY `id_member` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `nota`
---
-ALTER TABLE `nota`
-  MODIFY `id_nota` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
-
---
--- AUTO_INCREMENT for table `penjualan`
---
-ALTER TABLE `penjualan`
-  MODIFY `id_penjualan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
-
---
--- AUTO_INCREMENT for table `toko`
---
-ALTER TABLE `toko`
-  MODIFY `id_toko` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
->>>>>>> 0586729b8e251df37fdf1adf985d600bd59fb3b1

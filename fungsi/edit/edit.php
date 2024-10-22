@@ -76,22 +76,66 @@ if (!empty($_SESSION['admin'])) {
         $row -> execute($data);
         echo '<script>window.location="../../index.php?page=barang/edit&barang='.$id.'&success=edit-data"</script>';
     }
+    // if (!empty($_GET['emoney'])) {
+    //     $id = htmlentities($_POST['id']);
+    //     $nim = htmlentities($_POST['nim']);
+    //     $nama = htmlentities($_POST['nama']);
+    //     $saldo = htmlentities($_POST['saldo']);
+        
+    //     $sql = 'UPDATE emoney SET nim=?, nama=?, saldo=? WHERE id=?';
+    //     $row = $config->prepare($sql);
+        
+    //     $data = [$nim, $nama, $saldo, $id];
+    //     $row->execute($data);
+    
+    //     echo '<script>window.location="../../index.php?page=emoney/edit&emoney='.$id.'&success=edit-data"</script>';
+    // }
+
     if (!empty($_GET['emoney'])) {
         $id = htmlentities($_POST['id']);
         $nim = htmlentities($_POST['nim']);
         $nama = htmlentities($_POST['nama']);
         $saldo = htmlentities($_POST['saldo']);
         
-        $sql = 'UPDATE emoney SET nim=?, nama=?, saldo=? WHERE id=?';
+        // Ambil data foto lama
+        $sql = 'SELECT foto FROM emoney WHERE id = ?';
         $row = $config->prepare($sql);
+        $row->execute([$id]);
+        $data = $row->fetch();
+        $foto_lama = $data['foto'];
         
-        $data = [$nim, $nama, $saldo, $id];
-        $row->execute($data);
-    
-        echo '<script>window.location="../../index.php?page=emoney/edit&emoney='.$id.'&success=edit-data"</script>';
+        // Handle foto upload jika ada
+        if(!empty($_FILES['foto']['name'])){
+            $target_dir = "../../assets/img/emoney/";
+            $foto = time() . '_' . basename($_FILES["foto"]["name"]);
+            $target_file = $target_dir . $foto;
+            
+            // Hapus foto lama jika ada
+            if(!empty($foto_lama) && file_exists($target_dir . $foto_lama)){
+                unlink($target_dir . $foto_lama);
+            }
+            
+            // Upload foto baru
+            if (move_uploaded_file($_FILES["foto"]["tmp_name"], $target_file)) {
+                // Update dengan foto baru
+                $sql = 'UPDATE emoney SET nim=?, nama=?, foto=?, saldo=? WHERE id=?';
+                $row = $config->prepare($sql);
+                $row->execute([$nim, $nama, $foto, $saldo, $id]);
+            } else {
+                echo '<script>alert("Maaf, terjadi kesalahan saat mengupload file.");
+                      window.location="../../index.php?page=emoney"</script>';
+                exit;
+            }
+        } else {
+            // Update tanpa mengubah foto
+            $sql = 'UPDATE emoney SET nim=?, nama=?, saldo=? WHERE id=?';
+            $row = $config->prepare($sql);
+            $row->execute([$nim, $nama, $saldo, $id]);
+        }
+        
+        echo '<script>window.location="../../index.php?page=emoney&success-edit=edit-data"</script>';
     }
     
-
     if (!empty($_GET['gambar'])) {
         $id = htmlentities($_POST['id']);
         set_time_limit(0);

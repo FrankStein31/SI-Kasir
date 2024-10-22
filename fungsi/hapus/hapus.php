@@ -21,13 +21,38 @@ if (!empty($_SESSION['admin'])) {
         echo '<script>window.location="../../index.php?page=barang&&remove=hapus-data"</script>';
     }
 
+    // if (!empty($_GET['emoney'])) {
+    //     $id= $_GET['id'];
+    //     $data[] = $id;
+    //     $sql = 'DELETE FROM emoney WHERE id=?';
+    //     $row = $config -> prepare($sql);
+    //     $row -> execute($data);
+    //     echo '<script>window.location="../../index.php?page=emoney&&remove=hapus-data"</script>';
+    // }
+
     if (!empty($_GET['emoney'])) {
-        $id= $_GET['id'];
-        $data[] = $id;
+        $id = $_GET['id'];
+        
+        // Ambil data foto sebelum menghapus
+        $sql = 'SELECT foto FROM emoney WHERE id = ?';
+        $row = $config->prepare($sql);
+        $row->execute([$id]);
+        $data = $row->fetch();
+        
+        // Hapus foto jika ada
+        if(!empty($data['foto'])){
+            $file = "../../assets/img/emoney/" . $data['foto'];
+            if(file_exists($file)){
+                unlink($file);
+            }
+        }
+        
+        // Hapus data dari database
         $sql = 'DELETE FROM emoney WHERE id=?';
-        $row = $config -> prepare($sql);
-        $row -> execute($data);
-        echo '<script>window.location="../../index.php?page=emoney&&remove=hapus-data"</script>';
+        $row = $config->prepare($sql);
+        $row->execute([$id]);
+        
+        echo '<script>window.location="../../index.php?page=emoney&remove=hapus-data"</script>';
     }
 
     if (!empty($_GET['jual'])) {

@@ -42,7 +42,22 @@
                 <!-- <h6 class="collapse-header">Custom Components:</h6> -->
                 <a class="collapse-item" href="index.php?page=barang">Produk</a>
                 <a class="collapse-item" href="index.php?page=kategori">Kategori</a>
-                <a class="collapse-item" href="index.php?page=emoney">E-Money</a>
+            </div>
+        </div>
+    </li>
+
+    <li class="nav-item active">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseee" aria-expanded="true"
+            aria-controls="collapseTwo">
+            <i class="fas fa-fw fa-money-bill-wave"></i>
+            <span>E-Money</span>
+        </a>
+        <div id="collapseee" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <!-- <h6 class="collapse-header">Custom Components:</h6> -->
+                <a class="collapse-item" href="index.php?page=validasi">Validasi Top Up</a>
+                <a class="collapse-item" href="index.php?page=emoney">Data E-Money</a>
+                <a class="collapse-item" href="index.php?page=emoney/topup&emoney">Top Up</a>
             </div>
         </div>
     </li>
