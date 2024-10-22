@@ -31,7 +31,7 @@ if ($r > 0) {
 }
 ?>
 <!-- Trigger the modal with a button -->
-<button type="button" class="btn btn-primary btn-md mr-2" data-toggle="modal" data-target="#myModal1">
+<button type="button" class="btn btn-primary btn-md mr-2" data-toggle="modal" data-target="#myModal">
     <i class="fa fa-plus"></i> Tambah Data</button>
 <br />
 <!-- <a href="index.php?page=barang&stok=yes" class="btn btn-warning btn-md mr-2">
@@ -72,7 +72,7 @@ if ($r > 0) {
                         <td><?php echo number_format($isi['saldo'], 2, ',', '.'); ?></td>
                         <td>
                             <a href="index.php?page=emoney/edit&emoney=<?php echo $isi['id']; ?>" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i> Edit</a>
-                            <a href="delete.php?id=<?php echo $isi['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?')"><i class="fa fa-trash"></i> Hapus</a>
+                            <a href="fungsi/hapus/hapus.php?emoney=hapus&id=<?php echo $isi['id']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?')"><i class="fa fa-trash"></i> Hapus</a>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -86,7 +86,7 @@ if ($r > 0) {
 <!-- tambah barang MODALS-->
 <!-- Modal -->
 
-<div id="myModal1" class="modal fade" role="dialog">
+<div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">
         <!-- Modal content-->
         <div class="modal-content" style=" border-radius:0px;">
