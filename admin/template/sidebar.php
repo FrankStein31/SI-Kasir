@@ -80,7 +80,7 @@
     <li class="nav-item active">
         <a class="nav-link" href="index.php?page=pengaturan">
             <i class="fas fa-fw fa-cogs"></i>
-            <span>Pengaturan Cafe</span></a>
+            <span>Pengaturan Kantin</span></a>
     </li>
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
