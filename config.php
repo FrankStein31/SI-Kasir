@@ -10,7 +10,7 @@ error_reporting(0);
 	$dbname = 'db_toko'; // nama database anda
 	
 	try{
-		$config = new PDO("mysql:host=$host;dbname=$dbname;", $user,$pass);
+		$config = new PDO("mysql:host=$host2;dbname=$dbname;", $user,$pass);
 		//echo 'sukses';
 	}catch(PDOException $e){
 		$config = new PDO("mysql:host=$host2;dbname=$dbname;", $user,$pass);
