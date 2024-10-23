@@ -50,10 +50,11 @@
                             <th>Kategori</th>
                             <th>Nama Produk</th>
                             <th>Merk</th>
-                            <th>Stok</th>
                             <th>Harga Beli</th>
                             <th>Harga Jual</th>
+                            <th>Stok</th>
                             <th>Satuan</th>
+                            <th>Expired</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -88,6 +89,7 @@
                             <td>Rp.<?php echo number_format($isi['harga_beli']);?>,-</td>
                             <td>Rp.<?php echo number_format($isi['harga_jual']);?>,-</td>
                             <td> <?php echo $isi['satuan_barang'];?></td>
+                            <td><?php echo $isi['expired'];?></td>
                             <td>
                                 <?php if($isi['stok'] <=  '3'){?>
                                 <form method="POST" action="fungsi/edit/edit.php?stok=edit">
@@ -201,6 +203,11 @@
                                     <td>Stok</td>
                                     <td><input type="number" required Placeholder="Stok" class="form-control"
                                             name="stok"></td>
+                                </tr>
+                                <tr>
+                                    <td>Expired</td>
+                                    <td><input type="date" required Placeholder="expired" class="form-control"
+                                            name="expired"></td>
                                 </tr>
                                 <tr>
                                     <td>Tanggal Input</td>
