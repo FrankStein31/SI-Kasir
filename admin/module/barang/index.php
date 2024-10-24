@@ -50,9 +50,9 @@
                             <th>Kategori</th>
                             <th>Nama Produk</th>
                             <th>Merk</th>
+                            <th>Stok</th>
                             <th>Harga Beli</th>
                             <th>Harga Jual</th>
-                            <th>Stok</th>
                             <th>Satuan</th>
                             <th>Expired</th>
                             <th>Aksi</th>
