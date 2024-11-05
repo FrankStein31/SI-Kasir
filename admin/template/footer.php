@@ -8,8 +8,7 @@
         <div class="container my-auto">
             <div class="copyright text-center my-auto">
                 <span>
-                    <?php echo date('Y');?> - Sistem Kasir
-                    <!-- by <b>Frankie Steinlie</b> | 08883866931 -->
+                    <?php echo date('Y');?> - Simkanti
                 </span>
             </div>
         </div>

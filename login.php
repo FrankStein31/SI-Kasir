@@ -55,7 +55,7 @@
 								<img src="Logo Polinema.png" alt="Logo" width="300px">
 							</div>
 							<div class="text-center">
-								<h4 class="h4 text-gray-900 mb-4"><b>Login SI Kasir</b></h4>
+								<h4 class="h4 text-gray-900 mb-4"><b>Login Simkanti</b></h4>
 							</div>
 							<form class="form-login" method="POST">
 								<div class="form-group">

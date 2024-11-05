@@ -11,7 +11,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-coffee"></i>
         </div>
-        <div class="sidebar-brand-text mx-3"><b>SI Kasir</b><sup></sup></div>
+        <div class="sidebar-brand-text mx-3"><b>Simkanti</b><sup></sup></div>
     </a>
 
     <!-- Divider -->

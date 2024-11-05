@@ -170,7 +170,8 @@
 									<td>Bayar  </td>
 									<td><input type="text" class="form-control" name="bayar" value="<?php echo $bayar;?>"></td>
 									<td><button class="btn btn-success"><i class="fa fa-shopping-cart"></i> Bayar</button>
-									<td><button class="btn btn-info"><i href="" class=""></i> Scan Qr</button>
+									<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Scan Qr</button>
+									
 									<?php  if(!empty($_GET['nota'] == 'yes')) {?>
 										<a class="btn btn-danger" href="fungsi/hapus/hapus.php?penjualan=jual">
 										<b>RESET</b></a></td><?php }?></td>
@@ -197,6 +198,37 @@
 			</div>
 		</div>
 	</div>
+
+	<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="display: flex; align-items: center; justify-content: center; min-height: 100vh;">
+        <!-- Modal content-->
+        <div class="modal-content" style="border-radius: 0px;">
+            <div class="modal-header" style="background: #285c64; color: #fff;">
+                <h5 class="modal-title"><i class="fa fa-plus"></i> Scan QR</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <form action="" method="">
+                <div class="modal-body">
+                    <table class="table table-striped bordered">
+                        <tr>
+                            <div class="justify" style="text-align: center;">
+                                <img src="pay.png" alt="Logo" width="300px">
+                            </div>
+                        </tr>
+                        <tr>
+                            <td>Tanggal Input</td>
+                            <td><input type="text" required readonly="readonly" class="form-control" value="<?php echo date("j F Y, G:i"); ?>" name="tgl"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 	
 
 <script>
