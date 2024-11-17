@@ -82,7 +82,7 @@ CREATE TABLE `emoney` (
 /*Data for the table `emoney` */
 
 insert  into `emoney`(`id`,`nim`,`nama`,`foto`,`saldo`) values 
-(8,'244107027008','Frankie Steinlie',NULL,0.00);
+(8,'244107027008','Frankie Steinlie',NULL,10000.00);
 
 /*Table structure for table `kategori` */
 
