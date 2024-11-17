@@ -1,6 +1,6 @@
 /*
-SQLyog Ultimate v13.1.1 (64 bit)
-MySQL - 10.4.32-MariaDB : Database - db_toko
+SQLyog Professional v13.1.1 (64 bit)
+MySQL - 8.0.30 : Database - db_toko
 *********************************************************************
 */
 
@@ -12,7 +12,7 @@ MySQL - 10.4.32-MariaDB : Database - db_toko
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-CREATE DATABASE /*!32312 IF NOT EXISTS*/`db_toko` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`db_toko` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 
 USE `db_toko`;
 
@@ -21,9 +21,9 @@ USE `db_toko`;
 DROP TABLE IF EXISTS `barang`;
 
 CREATE TABLE `barang` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int NOT NULL AUTO_INCREMENT,
   `id_barang` varchar(255) NOT NULL,
-  `id_kategori` int(11) NOT NULL,
+  `id_kategori` int NOT NULL,
   `nama_barang` text NOT NULL,
   `merk` varchar(255) NOT NULL,
   `harga_beli` varchar(255) NOT NULL,
@@ -34,7 +34,7 @@ CREATE TABLE `barang` (
   `tgl_input` varchar(255) NOT NULL,
   `tgl_update` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=latin1;
 
 /*Data for the table `barang` */
 
@@ -71,10 +71,10 @@ insert  into `barang`(`id`,`id_barang`,`id_kategori`,`nama_barang`,`merk`,`harga
 DROP TABLE IF EXISTS `emoney`;
 
 CREATE TABLE `emoney` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nim` varchar(20) NOT NULL,
-  `nama` varchar(100) NOT NULL,
-  `foto` varchar(255) NOT NULL,
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nim` varchar(20) COLLATE utf8mb4_general_ci NOT NULL,
+  `nama` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `foto` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `saldo` decimal(10,2) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -90,11 +90,11 @@ insert  into `emoney`(`id`,`nim`,`nama`,`foto`,`saldo`) values
 DROP TABLE IF EXISTS `kategori`;
 
 CREATE TABLE `kategori` (
-  `id_kategori` int(11) NOT NULL AUTO_INCREMENT,
+  `id_kategori` int NOT NULL AUTO_INCREMENT,
   `nama_kategori` varchar(255) NOT NULL,
   `tgl_input` varchar(255) NOT NULL,
   PRIMARY KEY (`id_kategori`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 /*Data for the table `kategori` */
 
@@ -110,24 +110,41 @@ insert  into `kategori`(`id_kategori`,`nama_kategori`,`tgl_input`) values
 DROP TABLE IF EXISTS `login`;
 
 CREATE TABLE `login` (
-  `id_login` int(11) NOT NULL AUTO_INCREMENT,
+  `id_login` int NOT NULL AUTO_INCREMENT,
   `user` varchar(255) NOT NULL,
   `pass` char(32) NOT NULL,
-  `id_member` int(11) NOT NULL,
+  `id_member` int NOT NULL,
   PRIMARY KEY (`id_login`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `login` */
 
 insert  into `login`(`id_login`,`user`,`pass`,`id_member`) values 
 (1,'admin','21232f297a57a5a743894a0e4a801fc3',1);
 
+/*Table structure for table `login_mhs` */
+
+DROP TABLE IF EXISTS `login_mhs`;
+
+CREATE TABLE `login_mhs` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nama` varchar(255) DEFAULT NULL,
+  `nim` varchar(255) DEFAULT NULL,
+  `password` varbinary(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*Data for the table `login_mhs` */
+
+insert  into `login_mhs`(`id`,`nama`,`nim`,`password`) values 
+(1,'Frankie','244107027008','$2y$10$SLfuRVjjhoJ0IMbVtXVliuRMT4.nvoy6URD7fjCTO.p0o34lMa.Oi');
+
 /*Table structure for table `member` */
 
 DROP TABLE IF EXISTS `member`;
 
 CREATE TABLE `member` (
-  `id_member` int(11) NOT NULL AUTO_INCREMENT,
+  `id_member` int NOT NULL AUTO_INCREMENT,
   `nm_member` varchar(255) NOT NULL,
   `alamat_member` text NOT NULL,
   `telepon` varchar(255) NOT NULL,
@@ -135,7 +152,7 @@ CREATE TABLE `member` (
   `gambar` text NOT NULL,
   `NIK` text NOT NULL,
   PRIMARY KEY (`id_member`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `member` */
 
@@ -147,15 +164,15 @@ insert  into `member`(`id_member`,`nm_member`,`alamat_member`,`telepon`,`email`,
 DROP TABLE IF EXISTS `nota`;
 
 CREATE TABLE `nota` (
-  `id_nota` int(11) NOT NULL AUTO_INCREMENT,
+  `id_nota` int NOT NULL AUTO_INCREMENT,
   `id_barang` varchar(255) NOT NULL,
-  `id_member` int(11) NOT NULL,
+  `id_member` int NOT NULL,
   `jumlah` varchar(255) NOT NULL,
   `total` varchar(255) NOT NULL,
   `tanggal_input` varchar(255) NOT NULL,
   `periode` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id_nota`)
-) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
 /*Data for the table `nota` */
 
@@ -168,14 +185,14 @@ insert  into `nota`(`id_nota`,`id_barang`,`id_member`,`jumlah`,`total`,`tanggal_
 DROP TABLE IF EXISTS `penjualan`;
 
 CREATE TABLE `penjualan` (
-  `id_penjualan` int(11) NOT NULL AUTO_INCREMENT,
+  `id_penjualan` int NOT NULL AUTO_INCREMENT,
   `id_barang` varchar(255) NOT NULL,
-  `id_member` int(11) NOT NULL,
+  `id_member` int NOT NULL,
   `jumlah` varchar(255) NOT NULL,
   `total` varchar(255) NOT NULL,
   `tanggal_input` varchar(255) NOT NULL,
   PRIMARY KEY (`id_penjualan`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
 
 /*Data for the table `penjualan` */
 
@@ -184,13 +201,13 @@ CREATE TABLE `penjualan` (
 DROP TABLE IF EXISTS `toko`;
 
 CREATE TABLE `toko` (
-  `id_toko` int(11) NOT NULL AUTO_INCREMENT,
+  `id_toko` int NOT NULL AUTO_INCREMENT,
   `nama_toko` varchar(255) NOT NULL,
   `alamat_toko` text NOT NULL,
   `tlp` varchar(255) NOT NULL,
   `nama_pemilik` varchar(255) NOT NULL,
   PRIMARY KEY (`id_toko`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `toko` */
 
@@ -202,12 +219,12 @@ insert  into `toko`(`id_toko`,`nama_toko`,`alamat_toko`,`tlp`,`nama_pemilik`) va
 DROP TABLE IF EXISTS `validasi`;
 
 CREATE TABLE `validasi` (
-  `id_validasi` int(11) NOT NULL AUTO_INCREMENT,
-  `nim` varchar(255) DEFAULT NULL,
-  `nama` varchar(255) DEFAULT NULL,
+  `id_validasi` int NOT NULL AUTO_INCREMENT,
+  `nim` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `nama` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `nominal` decimal(10,2) DEFAULT NULL,
-  `fotobukti` varchar(255) DEFAULT NULL,
-  `valid` tinyint(1) DEFAULT 0,
+  `fotobukti` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `valid` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id_validasi`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
