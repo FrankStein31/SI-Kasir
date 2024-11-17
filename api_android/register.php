@@ -23,47 +23,70 @@ try {
         throw new Exception("Connection failed: " . $conn->connect_error);
     }
 
-    // Terima data dari Android
-    $nama = isset($_POST['nama']) ? $_POST['nama'] : '';
-    $nim = isset($_POST['nim']) ? $_POST['nim'] : '';
-    $password = isset($_POST['password']) ? $_POST['password'] : '';
+    // Mulai transaksi
+    $conn->begin_transaction();
 
-    // Validasi input
-    if (empty($nama) || empty($nim) || empty($password)) {
-        throw new Exception("Semua field harus diisi");
-    }
+    try {
+        // Terima data dari Android
+        $nama = isset($_POST['nama']) ? $_POST['nama'] : '';
+        $nim = isset($_POST['nim']) ? $_POST['nim'] : '';
+        $password = isset($_POST['password']) ? $_POST['password'] : '';
 
-    // Cek apakah NIM sudah terdaftar
-    $checkQuery = "SELECT nim FROM login_mhs WHERE nim = ?";
-    $stmt = $conn->prepare($checkQuery);
-    $stmt->bind_param("s", $nim);
-    $stmt->execute();
-    $result = $stmt->get_result();
+        // Validasi input
+        if (empty($nama) || empty($nim) || empty($password)) {
+            throw new Exception("Semua field harus diisi");
+        }
 
-    if ($result->num_rows > 0) {
-        throw new Exception("NIM sudah terdaftar");
-    }
+        // Cek apakah NIM sudah terdaftar di tabel login_mhs
+        $checkQuery = "SELECT nim FROM login_mhs WHERE nim = ?";
+        $stmt = $conn->prepare($checkQuery);
+        $stmt->bind_param("s", $nim);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
-    // Hash password
-    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        if ($result->num_rows > 0) {
+            throw new Exception("NIM sudah terdaftar");
+        }
+        $stmt->close();
 
-    // Query insert
-    $query = "INSERT INTO login_mhs (nama, nim, password) VALUES (?, ?, ?)";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param("sss", $nama, $nim, $hashedPassword);
+        // Hash password
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    // Eksekusi query
-    if ($stmt->execute()) {
+        // Query insert ke tabel login_mhs
+        $queryLogin = "INSERT INTO login_mhs (nama, nim, password) VALUES (?, ?, ?)";
+        $stmtLogin = $conn->prepare($queryLogin);
+        $stmtLogin->bind_param("sss", $nama, $nim, $hashedPassword);
+        
+        if (!$stmtLogin->execute()) {
+            throw new Exception("Gagal melakukan registrasi user: " . $conn->error);
+        }
+        $stmtLogin->close();
+
+        // Query insert ke tabel emoney dengan saldo default 0 dan foto null
+        $queryEmoney = "INSERT INTO emoney (nim, nama, foto, saldo) VALUES (?, ?, NULL, 0.00)";
+        $stmtEmoney = $conn->prepare($queryEmoney);
+        $stmtEmoney->bind_param("ss", $nim, $nama);
+        
+        if (!$stmtEmoney->execute()) {
+            throw new Exception("Gagal membuat akun emoney: " . $conn->error);
+        }
+        $stmtEmoney->close();
+
+        // Commit transaksi jika semua query berhasil
+        $conn->commit();
+
         echo json_encode([
             "success" => true,
             "message" => "Registrasi berhasil"
         ]);
-    } else {
-        throw new Exception("Gagal melakukan registrasi: " . $conn->error);
+
+    } catch (Exception $e) {
+        // Rollback transaksi jika terjadi error
+        $conn->rollback();
+        throw $e;
     }
 
-    // Tutup statement dan koneksi
-    $stmt->close();
+    // Tutup koneksi
     $conn->close();
 
 } catch (Exception $e) {
