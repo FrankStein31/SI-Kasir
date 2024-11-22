@@ -77,12 +77,13 @@ CREATE TABLE `emoney` (
   `foto` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `saldo` decimal(10,2) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `emoney` */
 
 insert  into `emoney`(`id`,`nim`,`nama`,`foto`,`saldo`) values 
-(8,'244107027008','Frankie Steinlie',NULL,10000.00);
+(8,'244107027008','Frankie Steinlie',NULL,40000.00),
+(9,'244107027003','Nailul',NULL,0.00);
 
 /*Table structure for table `kategori` */
 
@@ -131,12 +132,13 @@ CREATE TABLE `login_mhs` (
   `nim` varchar(255) DEFAULT NULL,
   `password` varbinary(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `login_mhs` */
 
 insert  into `login_mhs`(`id`,`nama`,`nim`,`password`) values 
-(2,'Frankie Steinlie','244107027008','$2y$10$Moh18pZ07ztaZtREjSwfD.HCWlZhWgFeRub91suzoWYF65CiLdB3a');
+(2,'Frankie Steinlie','244107027008','$2y$10$Moh18pZ07ztaZtREjSwfD.HCWlZhWgFeRub91suzoWYF65CiLdB3a'),
+(3,'Nailul','244107027003','$2y$10$Yohl6cDA1949Z9exyCNt1.wPhoUJEJRe8a5E0f9WUgVpuD6WgEcvG');
 
 /*Table structure for table `member` */
 
@@ -191,9 +193,12 @@ CREATE TABLE `penjualan` (
   `total` varchar(255) NOT NULL,
   `tanggal_input` varchar(255) NOT NULL,
   PRIMARY KEY (`id_penjualan`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
 
 /*Data for the table `penjualan` */
+
+insert  into `penjualan`(`id_penjualan`,`id_barang`,`id_member`,`jumlah`,`total`,`tanggal_input`) values 
+(34,'BR007',1,'3','30000','22 November 2024, 12:09');
 
 /*Table structure for table `toko` */
 
@@ -225,9 +230,18 @@ CREATE TABLE `validasi` (
   `fotobukti` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `valid` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id_validasi`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `validasi` */
+
+insert  into `validasi`(`id_validasi`,`nim`,`nama`,`nominal`,`fotobukti`,`valid`) values 
+(5,'244107027008','Frankie Steinlie',10000.00,'1732242411_673febeb4a7fc.png',1),
+(6,'244107027008','Frankie Steinlie',100000.00,'1732242469_673fec259401c.jpg',2),
+(7,'244107027008','Frankie Steinlie',5000.00,'bukti_1732245859_244107027008.jpg',1),
+(8,'244107027008','Frankie Steinlie',20000.00,'bukti_1732246389_244107027008.jpg',2),
+(9,'244107027008','Frankie Steinlie',15000.00,'bukti_1732248594_244107027008.jpg',1),
+(10,'244107027008','Frankie Steinlie',1000.00,'bukti_1732249405_244107027008.jpg',2),
+(11,'244107027008','Frankie Steinlie',200000.00,'bukti_1732249498_244107027008.jpg',0);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
