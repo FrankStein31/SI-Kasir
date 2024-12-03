@@ -77,13 +77,35 @@ CREATE TABLE `emoney` (
   `foto` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `saldo` decimal(10,2) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `emoney` */
 
 insert  into `emoney`(`id`,`nim`,`nama`,`foto`,`saldo`) values 
-(8,'244107027008','Frankie Steinlie',NULL,40000.00),
-(9,'244107027003','Nailul',NULL,0.00);
+(8,'244107027008','Frankie Steinlie',NULL,110000.00),
+(9,'244107027003','Nailul',NULL,0.00),
+(10,'2131750002','Eka',NULL,30000.00);
+
+/*Table structure for table `history` */
+
+DROP TABLE IF EXISTS `history`;
+
+CREATE TABLE `history` (
+  `id_h` int NOT NULL AUTO_INCREMENT,
+  `nim` varchar(255) DEFAULT NULL,
+  `totalharga` varchar(255) DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `time` time(6) DEFAULT NULL,
+  PRIMARY KEY (`id_h`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+/*Data for the table `history` */
+
+insert  into `history`(`id_h`,`nim`,`totalharga`,`date`,`time`) values 
+(1,'2131750002','25000','2024-12-03',NULL),
+(2,'2131750002','10000','2024-12-03','16:04:33.314944'),
+(3,'244107027008','10000','2024-12-03','16:05:26.266370'),
+(4,'244107027008','20000','2024-12-03','16:07:03.110224');
 
 /*Table structure for table `kategori` */
 
@@ -132,13 +154,14 @@ CREATE TABLE `login_mhs` (
   `nim` varchar(255) DEFAULT NULL,
   `password` varbinary(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `login_mhs` */
 
 insert  into `login_mhs`(`id`,`nama`,`nim`,`password`) values 
 (2,'Frankie Steinlie','244107027008','$2y$10$Moh18pZ07ztaZtREjSwfD.HCWlZhWgFeRub91suzoWYF65CiLdB3a'),
-(3,'Nailul','244107027003','$2y$10$Yohl6cDA1949Z9exyCNt1.wPhoUJEJRe8a5E0f9WUgVpuD6WgEcvG');
+(3,'Nailul','244107027003','$2y$10$Yohl6cDA1949Z9exyCNt1.wPhoUJEJRe8a5E0f9WUgVpuD6WgEcvG'),
+(4,'Eka','2131750002','$2y$10$.uMdsOMUwZOVk3ZDppuUXujng8C9/pBzC24F.DHjs9YlSbYUGdMn2');
 
 /*Table structure for table `member` */
 
@@ -193,12 +216,12 @@ CREATE TABLE `penjualan` (
   `total` varchar(255) NOT NULL,
   `tanggal_input` varchar(255) NOT NULL,
   PRIMARY KEY (`id_penjualan`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
 
 /*Data for the table `penjualan` */
 
 insert  into `penjualan`(`id_penjualan`,`id_barang`,`id_member`,`jumlah`,`total`,`tanggal_input`) values 
-(34,'BR007',1,'3','30000','22 November 2024, 12:09');
+(34,'BR007',1,'2','20000','22 November 2024, 12:09');
 
 /*Table structure for table `toko` */
 
@@ -230,7 +253,7 @@ CREATE TABLE `validasi` (
   `fotobukti` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `valid` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id_validasi`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `validasi` */
 
@@ -241,7 +264,10 @@ insert  into `validasi`(`id_validasi`,`nim`,`nama`,`nominal`,`fotobukti`,`valid`
 (8,'244107027008','Frankie Steinlie',20000.00,'bukti_1732246389_244107027008.jpg',2),
 (9,'244107027008','Frankie Steinlie',15000.00,'bukti_1732248594_244107027008.jpg',1),
 (10,'244107027008','Frankie Steinlie',1000.00,'bukti_1732249405_244107027008.jpg',2),
-(11,'244107027008','Frankie Steinlie',200000.00,'bukti_1732249498_244107027008.jpg',0);
+(11,'244107027008','Frankie Steinlie',200000.00,'bukti_1732249498_244107027008.jpg',1),
+(12,'244107027008','Frankie Steinlie',10000.00,'bukti_1733146353_244107027008.jpg',1),
+(13,'2131750002','Eka',100000.00,'bukti_1733215355_2131750002.jpg',1),
+(14,'244107027008','Frankie Steinlie',50000.00,'bukti_1733216776_244107027008.jpg',1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
