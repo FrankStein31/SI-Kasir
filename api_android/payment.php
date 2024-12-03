@@ -94,7 +94,7 @@ try {
     $updateStmt->execute();
 
     // Insert ke tabel history
-    $insertHistoryQuery = "INSERT INTO history (nim, totalharga, date, time) VALUES (?, ?, CURRENT_DATE, CURRENT_TIME(6))";
+    $insertHistoryQuery = "INSERT INTO history (nim, totalharga, date, time) VALUES (?, ?, CURRENT_DATE, CURRENT_TIME)";
     $insertHistoryStmt = $conn->prepare($insertHistoryQuery);
     $insertHistoryStmt->bind_param("ss", $nim, $amount);
     $insertHistoryStmt->execute();
