@@ -82,7 +82,7 @@ CREATE TABLE `emoney` (
 /*Data for the table `emoney` */
 
 insert  into `emoney`(`id`,`nim`,`nama`,`foto`,`saldo`) values 
-(8,'244107027008','Frankie Steinlie',NULL,110000.00),
+(8,'244107027008','Frankie Steinlie',NULL,90000.00),
 (9,'244107027003','Nailul',NULL,0.00),
 (10,'2131750002','Eka',NULL,30000.00);
 
@@ -95,17 +95,22 @@ CREATE TABLE `history` (
   `nim` varchar(255) DEFAULT NULL,
   `totalharga` varchar(255) DEFAULT NULL,
   `date` date DEFAULT NULL,
-  `time` time(6) DEFAULT NULL,
+  `time` time DEFAULT NULL,
   PRIMARY KEY (`id_h`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `history` */
 
 insert  into `history`(`id_h`,`nim`,`totalharga`,`date`,`time`) values 
 (1,'2131750002','25000','2024-12-03',NULL),
-(2,'2131750002','10000','2024-12-03','16:04:33.314944'),
-(3,'244107027008','10000','2024-12-03','16:05:26.266370'),
-(4,'244107027008','20000','2024-12-03','16:07:03.110224');
+(2,'2131750002','10000','2024-12-03','16:04:33'),
+(3,'244107027008','10000','2024-12-03','16:05:26'),
+(4,'244107027008','20000','2024-12-03','16:07:03'),
+(5,'244107027008','20000','2024-12-03','16:23:53'),
+(6,'244107027008','50000','2024-12-03','16:25:34'),
+(7,'244107027008','30000','2024-12-03','16:46:22'),
+(8,'244107027008','10000','2024-12-03','16:49:09'),
+(9,'244107027008','10000','2024-12-03','16:49:54');
 
 /*Table structure for table `kategori` */
 
@@ -221,7 +226,7 @@ CREATE TABLE `penjualan` (
 /*Data for the table `penjualan` */
 
 insert  into `penjualan`(`id_penjualan`,`id_barang`,`id_member`,`jumlah`,`total`,`tanggal_input`) values 
-(34,'BR007',1,'2','20000','22 November 2024, 12:09');
+(34,'BR007',1,'1','10000','22 November 2024, 12:09');
 
 /*Table structure for table `toko` */
 
