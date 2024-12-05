@@ -48,9 +48,9 @@ $hasil = $lihat->member_edit($id);
 		<div class="card card-primary">
 			<div class="card-header bg-primary text-white">
 				<h5><i class="fa fa-shopping-cart"></i> KASIR
-					<a class="btn btn-danger float-right"
+					<!-- <a class="btn btn-danger float-right"
 						onclick="javascript:return confirm('Apakah anda ingin reset keranjang ?');" href="fungsi/hapus/hapus.php?penjualan=jual">
-						<b>RESET KERANJANG</b></a>
+						<b>RESET KERANJANG</b></a> -->
 				</h5>
 			</div>
 			<div class="card-body">
@@ -172,7 +172,7 @@ $hasil = $lihat->member_edit($id);
 
 									<td>Bayar </td>
 									<td><input type="text" class="form-control" name="bayar" value="<?php echo $bayar; ?>"></td>
-									<td><button class="btn btn-success"><i class="fa fa-shopping-cart"></i> Bayar</button>
+									<td><button class="btn btn-success" href="fungsi/hapus/hapus.php?penjualan=jual" > <i class="fa fa-shopping-cart" href="fungsi/hapus/hapus.php?penjualan=jual"></i> Bayar</button>
 										<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Scan Qr</button>
 
 										<?php if (!empty($_GET['nota'] == 'yes')) { ?>
@@ -230,7 +230,10 @@ $hasil = $lihat->member_edit($id);
 					<p class="mt-3"><b>Total Harga:</b> Rp. <?php echo number_format($total_bayar); ?></p>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<a class="btn btn-success"
+						href="fungsi/hapus/hapus.php?penjualan=jual">
+						<b>Selesai</b></a>
+					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>
