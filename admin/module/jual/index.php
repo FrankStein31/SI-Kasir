@@ -172,7 +172,7 @@ $hasil = $lihat->member_edit($id);
 
 									<td>Bayar </td>
 									<td><input type="text" class="form-control" name="bayar" value="<?php echo $bayar; ?>"></td>
-									<td><button class="btn btn-success" href="fungsi/hapus/hapus.php?penjualan=jual" > <i class="fa fa-shopping-cart" href="fungsi/hapus/hapus.php?penjualan=jual"></i> Bayar</button>
+									<td><button class="btn btn-success" > <i class="fa fa-shopping-cart" ></i> Bayar</button>
 										<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Scan Qr</button>
 
 										<?php if (!empty($_GET['nota'] == 'yes')) { ?>
@@ -187,11 +187,9 @@ $hasil = $lihat->member_edit($id);
 								<td><input type="text" class="form-control" value="<?php echo $hitung; ?>"></td>
 								<td></td>
 								<td>
-									<a href="print.php?nm_member=<?php echo $_SESSION['admin']['nm_member']; ?>
-									&bayar=<?php echo $bayar; ?>&kembali=<?php echo $hitung; ?>" target="_blank">
-										<button class="btn btn-secondary">
-											<i class="fa fa-print"></i> Print Untuk Bukti Pembayaran
-										</button></a>
+								<button class="btn btn-secondary" onclick="handleButtonClick()">
+									<i class="fa fa-print"></i> Print Untuk Bukti Pembayaran
+								</button>
 								</td>
 							</tr>
 						</table>
@@ -244,24 +242,38 @@ $hasil = $lihat->member_edit($id);
 
 
 	<script>
-		// AJAX call for autocomplete 
-		$(document).ready(function() {
-			$("#cari").change(function() {
-				$.ajax({
-					type: "POST",
-					url: "fungsi/edit/edit.php?cari_barang=yes",
-					data: 'keyword=' + $(this).val(),
-					beforeSend: function() {
-						$("#hasil_cari").hide();
-						$("#tunggu").html('<p style="color:green"><blink>tunggu sebentar</blink></p>');
-					},
-					success: function(html) {
-						$("#tunggu").html('');
-						$("#hasil_cari").show();
-						$("#hasil_cari").html(html);
-					}
-				});
-			});
-		});
-		//To select country name
-	</script>
+    // Fungsi untuk menangani klik tombol print
+    function handleButtonClick() {
+        // URL untuk cetak bukti pembayaran
+        var printUrl = 'print.php?nm_member=<?php echo urlencode($_SESSION['admin']['nm_member']); ?>&bayar=<?php echo urlencode($bayar); ?>&kembali=<?php echo urlencode($hitung); ?>';
+        
+        // URL untuk hapus penjualan
+        var hapusUrl = 'fungsi/hapus/hapus.php?penjualan=jual';
+        
+        // Membuka print.php di tab baru
+        window.open(printUrl, '_blank');
+        
+        // Mengarahkan halaman saat ini ke hapus.php
+        window.location.href = hapusUrl;
+    }
+
+    // AJAX call untuk autocomplete
+    $(document).ready(function() {
+        $("#cari").change(function() {
+            $.ajax({
+                type: "POST",
+                url: "fungsi/edit/edit.php?cari_barang=yes",
+                data: 'keyword=' + $(this).val(),
+                beforeSend: function() {
+                    $("#hasil_cari").hide();
+                    $("#tunggu").html('<p style="color:green"><blink>tunggu sebentar</blink></p>');
+                },
+                success: function(html) {
+                    $("#tunggu").html('');
+                    $("#hasil_cari").show();
+                    $("#hasil_cari").html(html);
+                }
+            });
+        });
+    });
+</script>
