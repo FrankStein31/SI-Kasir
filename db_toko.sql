@@ -34,37 +34,20 @@ CREATE TABLE `barang` (
   `tgl_input` varchar(255) NOT NULL,
   `tgl_update` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=latin1;
 
 /*Data for the table `barang` */
 
 insert  into `barang`(`id`,`id_barang`,`id_kategori`,`nama_barang`,`merk`,`harga_beli`,`harga_jual`,`satuan_barang`,`stok`,`expired`,`tgl_input`,`tgl_update`) values 
-(10,'BR001',5,'Lemon Sky','-','0','20000','PCS','99999999999993','0000-00-00','3 May 2024, 19:11','3 May 2024, 19:13'),
-(11,'BR002',5,'Signature TJ','-','0','20000','PCS','99999999999999','0000-00-00','3 May 2024, 19:11','2024-05-12'),
-(12,'BR003',5,'flychee','-','0','20000','PCS','99999999999999','0000-00-00','2024-05-12','2024-05-12'),
-(13,'BR004',5,'Mango Paradice','-','0','20000','PCS','99999999999999','0000-00-00','2024-05-12','2024-05-12'),
-(14,'BR005',5,'Black Tea','-','0','15000','PCS','99999999999999','0000-00-00','2024-05-12','2024-05-12'),
-(15,'BR006',5,'Peachek','-','0','20000','PCS','99999999999999','0000-00-00','2024-05-12','2024-05-12'),
-(16,'BR007',1,'es kopi susu','-','0','10000','PCS','99999999999999','0000-00-00','2024-05-12','2024-05-12'),
-(17,'BR008',1,'kopi ijo waris','-','0','7000','PCS','99999999999999','0000-00-00','2024-05-12','2024-05-12'),
-(18,'BR009',1,'kopi tj','-','0','6000','PCS','99999999999999','0000-00-00','2024-05-12','2024-05-12'),
-(19,'BR010',1,'kopi susu tj','-','0','8000','PCS','99999999999999','0000-00-00','2024-05-12','2024-05-12'),
-(20,'BR011',1,'matcha','-','0','13000','PCS','99999999999999','0000-00-00','2024-05-12','2024-05-12'),
-(21,'BR012',1,'taro','-','0','13000','PCS','99999999999999','0000-00-00','2024-05-12','2024-05-12'),
-(22,'BR013',1,'thai tea','-','0','13000','PCS','99999999999999','0000-00-00','2024-05-12','2024-05-12'),
-(24,'BR015',1,'red valvet','-','0','13000','PCS','99999999999999','0000-00-00','2024-05-12','2024-05-12'),
-(25,'BR016',1,'es soklat','-','0','10000','PCS','99999999999999','0000-00-00','2024-05-12','2024-05-12'),
-(26,'BR017',1,'milo','-','0','8000','PCS','99999999999999','0000-00-00','2024-05-12','2024-05-12'),
-(27,'BR018',1,'es teh','-','0','6000','PCS','99999999999999','0000-00-00','2024-05-12','2024-05-12'),
-(28,'BR019',1,'es teh susu','-','0','8000','PCS','99999999999996','0000-00-00','2024-05-12','2024-05-12'),
-(29,'BR020',1,'leci tea','-','0','13000','PCS','99999999999999','0000-00-00','2024-05-12','2024-05-12'),
-(30,'BR021',1,'kubisu','-','0','7000','PCS','99999999999999','0000-00-00','2024-05-12','2024-05-12'),
-(31,'BR022',1,'joshua','-','0','7000','PCS','99999999999999','0000-00-00','2024-05-12','2024-05-12'),
-(32,'BR023',1,'lemon squash','-','0','15000','PCS','99999999999999','0000-00-00','2024-05-12','2024-05-12'),
-(33,'BR024',1,'leci squash','-','0','15000','PCS','99999999999999','0000-00-00','2024-05-12','2024-05-12'),
-(34,'BR025',1,'mango squash','-','0','15000','PCS','99999999999999','0000-00-00','2024-05-12','2024-05-12'),
-(45,'BR035',5,'soda','cocacola','10000','15000','PCS','37','2024-10-24','23 October 2024, 5:36','23 October 2024, 5:52'),
-(46,'BR036',1,'susu coklat','ultramilk','9000','10000','PCS','800','2024-10-25','23 October 2024, 5:52',NULL);
+(47,'BR001',1,'Jus Mangga','- ','10000','15000','PCS','50','2025-01-18','18 December 2024, 9:50',NULL),
+(48,'BR002',1,'Cocacola','-','5000','6000','PCS','50','2025-02-26','18 December 2024, 9:52',NULL),
+(49,'BR003',1,'Cleo','-','3000','4000','PCS','100','2025-03-05','18 December 2024, 9:52',NULL),
+(50,'BR004',2,'Nasi Goreng','-','10000','11000','Porsi','20','2024-12-28','18 December 2024, 9:53',NULL),
+(51,'BR005',2,'Nasi Nugget','-','10000','11000','Porsi','15','2024-12-28','18 December 2024, 9:53',NULL),
+(52,'BR006',2,'Nasi Chilipadi','-','10000','11000','Porsi','20','2024-12-28','18 December 2024, 9:54',NULL),
+(53,'BR007',3,'Chicato','-','2500','4000','PCS','30','2025-01-31','18 December 2024, 9:55',NULL),
+(54,'BR008',3,'Macaroni','-','200','500','PCS','50','2025-02-01','18 December 2024, 9:56',NULL),
+(55,'BR009',3,'Sosis','-','1000','2000','PCS','30','2025-01-31','18 December 2024, 9:57',NULL);
 
 /*Table structure for table `emoney` */
 
@@ -77,12 +60,12 @@ CREATE TABLE `emoney` (
   `foto` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
   `saldo` decimal(10,2) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `emoney` */
 
 insert  into `emoney`(`id`,`nim`,`nama`,`foto`,`saldo`) values 
-(8,'244107027008','Frankie Steinlie',NULL,90000.00),
+(8,'244107027008','Frankie Steinlie',NULL,76000.00),
 (9,'244107027003','Nailul',NULL,0.00),
 (10,'2131750002','Eka',NULL,30000.00);
 
@@ -97,7 +80,7 @@ CREATE TABLE `history` (
   `date` date DEFAULT NULL,
   `time` time DEFAULT NULL,
   PRIMARY KEY (`id_h`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `history` */
 
@@ -110,7 +93,9 @@ insert  into `history`(`id_h`,`nim`,`totalharga`,`date`,`time`) values
 (6,'244107027008','50000','2024-12-03','16:25:34'),
 (7,'244107027008','30000','2024-12-03','16:46:22'),
 (8,'244107027008','10000','2024-12-03','16:49:09'),
-(9,'244107027008','10000','2024-12-03','16:49:54');
+(9,'244107027008','10000','2024-12-03','16:49:54'),
+(10,'244107027008','64000','2024-12-03','17:03:02'),
+(11,'000111222','64000','2024-12-17','21:31:50');
 
 /*Table structure for table `kategori` */
 
@@ -126,11 +111,9 @@ CREATE TABLE `kategori` (
 /*Data for the table `kategori` */
 
 insert  into `kategori`(`id_kategori`,`nama_kategori`,`tgl_input`) values 
-(1,'Beverage (Minuman)','3 May 2024, 18:19'),
-(2,'Food (Makanan)','3 May 2024, 18:19'),
-(4,'Ketan','3 May 2024, 18:19'),
-(5,'Cocktail','3 May 2024, 18:19'),
-(6,'Snack','23 October 2024, 5:28');
+(1,'Beverage (Minuman)','23 October 2024, 18:19'),
+(2,'Food (Makanan)','23 October 2024, 18:19'),
+(3,'Snack','23 October 2024, 5:28');
 
 /*Table structure for table `login` */
 
@@ -159,7 +142,7 @@ CREATE TABLE `login_mhs` (
   `nim` varchar(255) DEFAULT NULL,
   `password` varbinary(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 /*Data for the table `login_mhs` */
 
@@ -205,10 +188,6 @@ CREATE TABLE `nota` (
 
 /*Data for the table `nota` */
 
-insert  into `nota`(`id_nota`,`id_barang`,`id_member`,`jumlah`,`total`,`tanggal_input`,`periode`) values 
-(19,'BR001',1,'3','60000','18 October 2024, 13:22','10-2024'),
-(20,'BR001',1,'3','60000','18 October 2024, 13:22','10-2024');
-
 /*Table structure for table `penjualan` */
 
 DROP TABLE IF EXISTS `penjualan`;
@@ -221,12 +200,9 @@ CREATE TABLE `penjualan` (
   `total` varchar(255) NOT NULL,
   `tanggal_input` varchar(255) NOT NULL,
   PRIMARY KEY (`id_penjualan`)
-) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=latin1;
 
 /*Data for the table `penjualan` */
-
-insert  into `penjualan`(`id_penjualan`,`id_barang`,`id_member`,`jumlah`,`total`,`tanggal_input`) values 
-(34,'BR007',1,'1','10000','22 November 2024, 12:09');
 
 /*Table structure for table `toko` */
 
@@ -258,7 +234,7 @@ CREATE TABLE `validasi` (
   `fotobukti` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `valid` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id_validasi`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 /*Data for the table `validasi` */
 
@@ -272,7 +248,9 @@ insert  into `validasi`(`id_validasi`,`nim`,`nama`,`nominal`,`fotobukti`,`valid`
 (11,'244107027008','Frankie Steinlie',200000.00,'bukti_1732249498_244107027008.jpg',1),
 (12,'244107027008','Frankie Steinlie',10000.00,'bukti_1733146353_244107027008.jpg',1),
 (13,'2131750002','Eka',100000.00,'bukti_1733215355_2131750002.jpg',1),
-(14,'244107027008','Frankie Steinlie',50000.00,'bukti_1733216776_244107027008.jpg',1);
+(14,'244107027008','Frankie Steinlie',50000.00,'bukti_1733216776_244107027008.jpg',1),
+(15,'244107027008','Frankie Steinlie',50000.00,'bukti_1733219926_244107027008.jpg',1),
+(16,'000111222','Franky patek',200000.00,'bukti_1734445504_000111222.jpg',1);
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

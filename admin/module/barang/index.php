@@ -30,18 +30,114 @@
 				";
         }
 
-        $sql1 = "SELECT * FROM barang WHERE DATEDIFF(expired, CURDATE()) <= 7";
+        // $sql1 = "SELECT * FROM barang WHERE DATEDIFF(expired, CURDATE()) <= 7";
+        // $row1 = $config->prepare($sql1);
+        // $row1->execute();
+        // $r1 = $row1->rowCount();
+
+        // if ($r1 > 0) {
+        //     echo "
+        //         <div class='alert alert-warning'>
+        //             <span class='glyphicon glyphicon-info-sign'></span> Ada <span style='color:red'>$r1</span> barang yang akan kedaluwarsa dalam waktu kurang dari 7 hari. Silakan cek dan lakukan tindakan yang diperlukan!
+        //             <span class='pull-right'><a href='index.php?page=barang&expired=yes'>Cek Barang <i class='fa fa-angle-double-right'></i></a></span>
+        //         </div>
+        //         ";
+        // }
+        $sql1 = "SELECT 
+                    id,
+                    id_barang,
+                    nama_barang,
+                    merk,
+                    stok,
+                    expired,
+                    DATEDIFF(expired, CURDATE()) AS days_until_expiry,
+                    CASE 
+                        WHEN DATEDIFF(expired, CURDATE()) BETWEEN 0 AND 3 THEN 'Kritis'
+                        WHEN DATEDIFF(expired, CURDATE()) BETWEEN 3 AND 7 THEN 'Waspada'
+                        WHEN DATEDIFF(expired, CURDATE()) BETWEEN -100 AND 0 THEN 'Kadaluarsa'
+                    END AS expiry_status,
+                    CONCAT(
+                        FLOOR(stok), ' ', satuan_barang
+                    ) AS stock_info,
+                    harga_beli,
+                    harga_jual,
+                    id_kategori
+                FROM barang
+                WHERE 
+                    DATEDIFF(expired, CURDATE()) <= 7
+                    AND stok > 0
+                ORDER BY 
+                    days_until_expiry ASC, 
+                    stok DESC";
+
         $row1 = $config->prepare($sql1);
         $row1->execute();
-        $r1 = $row1->rowCount();
+        $expired_items = $row1->fetchAll(PDO::FETCH_ASSOC);
 
-        if ($r1 > 0) {
-            echo "
-                <div class='alert alert-warning'>
-                    <span class='glyphicon glyphicon-info-sign'></span> Ada <span style='color:red'>$r1</span> barang yang akan kedaluwarsa dalam waktu kurang dari 7 hari. Silakan cek dan lakukan tindakan yang diperlukan!
-                    <span class='pull-right'><a href='index.php?page=barang&expired=yes'>Cek Barang <i class='fa fa-angle-double-right'></i></a></span>
-                </div>
-                ";
+        if (count($expired_items) > 0) {
+            echo "<div class='alert alert-warning'>";
+            echo "<span class='glyphicon glyphicon-info-sign'></span> ";
+            echo "Ada <span style='color:red'>" . count($expired_items) . "</span> barang yang akan kedaluwarsa atau sudah kedaluwarsa ";
+            
+            echo "<button id='toggleExpiredItemsBtn' class='btn btn-link'>
+                    <i class='fa fa-chevron-down' id='toggleIcon'></i>
+                  </button>";
+            
+            echo "<div id='expiredItemsTable' style='display:none;'>";
+            echo "<table class='table table-striped'>";
+            echo "<thead>";
+            echo "<tr>";
+            echo "<th>Nama Barang</th>";
+            echo "<th>Merk</th>";
+            echo "<th>Stok</th>";
+            echo "<th>Tanggal Expired</th>";
+            echo "<th>Hari Tersisa</th>";
+            echo "<th>Status</th>";
+            echo "</tr>";
+            echo "</thead>";
+            echo "<tbody>";
+            
+            foreach ($expired_items as $item) {
+                echo "<tr class='";
+                echo ($item['days_until_expiry'] <= 3) ? 'table-danger' : 
+                     (($item['days_until_expiry'] <= 7) ? 'table-warning' : 'table-info');
+                echo "'>";
+                echo "<td>" . htmlspecialchars($item['nama_barang']) . "</td>";
+                echo "<td>" . htmlspecialchars($item['merk']) . "</td>";
+                echo "<td>" . htmlspecialchars($item['stock_info']) . "</td>";
+                echo "<td>" . $item['expired'] . "</td>";
+                echo "<td>" . $item['days_until_expiry'] . " hari</td>";
+                echo "<td>" . $item['expiry_status'] . "</td>";
+                echo "</tr>";
+            }
+            
+            echo "</tbody>";
+            echo "</table>";
+            echo "</div>";
+            
+            echo "<span class='pull-right'>
+                <a href='index.php?page=barang&expired=yes'>
+                    Cek Detail Barang <i class='fa fa-angle-double-right'></i>
+                </a>
+            </span>";
+            echo "</div>";
+            
+            echo "<script>
+            document.getElementById('toggleExpiredItemsBtn').addEventListener('click', function() {
+                var table = document.getElementById('expiredItemsTable');
+                var icon = document.getElementById('toggleIcon');
+                
+                if (table.style.display === 'none') {
+                    table.style.display = 'block';
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                } else {
+                    table.style.display = 'none';
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                }
+            });
+            </script>";
         }
 
         ?>
