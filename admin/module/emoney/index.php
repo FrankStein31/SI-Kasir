@@ -28,7 +28,7 @@
             <thead>
                 <tr style="background:#DFF0D8;color:#333;">
                     <th>No.</th>
-                    <th>Foto</th>
+                    <!-- <th>Foto</th> -->
                     <th>NIM</th>
                     <th>Nama</th>
                     <th>Saldo</th>
@@ -47,13 +47,13 @@
                 ?>
                     <tr>
                         <td><?php echo $id++; ?></td>
-                        <td>
+                        <!-- <td>
                             <?php if($isi['foto']): ?>
                                 <img src="assets/img/emoney/<?php echo $isi['foto']; ?>" alt="Foto" style="width:50px; height:50px; object-fit:cover;">
                             <?php else: ?>
                                 <img src="assets/img/default-user.png" alt="Default" style="width:50px; height:50px; object-fit:cover;">
                             <?php endif; ?>
-                        </td>
+                        </td> -->
                         <td><?php echo $isi['nim']; ?></td>
                         <td><?php echo $isi['nama']; ?></td>
                         <td>Rp <?php echo number_format($isi['saldo'], 2, ',', '.'); ?></td>
