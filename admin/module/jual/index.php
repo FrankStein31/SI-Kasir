@@ -233,7 +233,7 @@ $hasil = $lihat->member_edit($id);
 					<a class="btn btn-success"
 						href="fungsi/hapus/hapus.php?penjualan=jual">
 						<b>Selesai</b></a>
-					<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+					<!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> -->
 				</div>
 			</div>
 		</div>
