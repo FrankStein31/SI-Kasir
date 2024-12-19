@@ -170,8 +170,8 @@ $hasil = $lihat->member_edit($id);
 									<td>Total Semua </td>
 									<td><input type="text" class="form-control" name="total" value="<?php echo $total_bayar; ?>"></td>
 
-									<td>Bayar </td>
-									<td><input type="text" class="form-control" name="bayar" value="<?php echo $bayar; ?>"></td>
+									<!-- <td>Bayar </td>
+									<td><input type="text" class="form-control" name="bayar" value="<?php echo $bayar; ?>"></td> -->
 									
 									<td>
 										<!-- <button class="btn btn-success" > <i class="fa fa-shopping-cart" ></i> Bayar</button> -->
@@ -190,14 +190,14 @@ $hasil = $lihat->member_edit($id);
 							</form>
 							<!-- aksi ke table nota -->
 							<tr>
-								<td>Kembali</td>
-								<td><input type="text" class="form-control" value="<?php echo $hitung; ?>"></td>
+								<!-- <td>Kembali</td>
+								<td><input type="text" class="form-control" value="<?php echo $hitung; ?>"></td> -->
 								<td></td>
-								<td>
+								<!-- <td>
 								<button class="btn btn-secondary" onclick="handleButtonClick()">
 									<i class="fa fa-print"></i> Print Untuk Bukti Pembayaran
 								</button>
-								</td>
+								</td> -->
 							</tr>
 						</table>
 						<br />
@@ -207,6 +207,7 @@ $hasil = $lihat->member_edit($id);
 			</div>
 		</div>
 	</div>
+										</div>
 
 	<div id="bayarModal" class="modal fade" role="dialog">
 		<div class="modal-dialog">
