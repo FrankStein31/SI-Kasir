@@ -172,7 +172,14 @@ $hasil = $lihat->member_edit($id);
 
 									<td>Bayar </td>
 									<td><input type="text" class="form-control" name="bayar" value="<?php echo $bayar; ?>"></td>
-									<td><button class="btn btn-success" > <i class="fa fa-shopping-cart" ></i> Bayar</button>
+									
+									<td>
+										<!-- <button class="btn btn-success" > <i class="fa fa-shopping-cart" ></i> Bayar</button> -->
+
+									<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#bayarModal">
+										<i class="fa fa-shopping-cart"></i> Bayar
+									</button>
+
 										<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> Scan Qr</button>
 
 										<?php if (!empty($_GET['nota'] == 'yes')) { ?>
@@ -196,6 +203,34 @@ $hasil = $lihat->member_edit($id);
 						<br />
 						<br />
 					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="bayarModal" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header bg-primary text-white">
+					<h5 class="modal-title"><i class="fa fa-money"></i> Pembayaran</h5>
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body">
+					<form id="formBayar">
+						<div class="form-group">
+							<label for="totalModal">Total Bayar</label>
+							<input type="text" id="totalModal" class="form-control" value="Rp. <?php echo number_format($total_bayar); ?>" readonly>
+						</div>
+						<div class="form-group">
+							<label for="jumlahBayar">Jumlah Bayar</label>
+							<input type="text" id="jumlahBayar" class="form-control" onkeypress="hitungOtomatis(event)" placeholder="Masukkan jumlah bayar">
+						</div>
+						<div class="form-group">
+							<label for="kembalian">Kembalian</label>
+							<input type="text" id="kembalian" class="form-control" placeholder="Kembalian" readonly>
+						</div>
+						<button type="button" class="btn btn-success" onclick="prosesBayar()">Proses Pembayaran</button>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -247,11 +282,70 @@ $hasil = $lihat->member_edit($id);
 		</div>
 	</div>
 
+<script>
+	function prosesBayar() {
+		// Get payment values
+		var totalBayar = <?php echo $total_bayar; ?>;
+		var jumlahBayar = parseFloat(document.getElementById('jumlahBayar').value);
 
+		if (isNaN(jumlahBayar) || jumlahBayar < totalBayar) {
+			alert("Jumlah bayar tidak cukup atau tidak valid!");
+			document.getElementById('kembalian').value = '';
+			return;
+		}
 
+		var kembalian = jumlahBayar - totalBayar;
+		document.getElementById('kembalian').value = "Rp. " + kembalian.toLocaleString();
 
+		// Collect all items from the sales table
+		var items = [];
+		<?php foreach ($hasil_penjualan as $isi) { ?>
+			items.push({
+				id_barang: '<?php echo $isi['id_barang']; ?>',
+				id_member: '<?php echo $isi['id_member']; ?>',
+				jumlah: '<?php echo $isi['jumlah']; ?>',
+				total: '<?php echo $isi['total']; ?>',
+				tgl_input: '<?php echo date('d F Y, H:i'); ?>', // Changed date format
+				periode: '<?php echo date('m-Y'); ?>'
+			});
+		<?php } ?>
 
-	<script>
+		// Create payment data object
+		var paymentData = {
+			items: items,
+			total: totalBayar,
+			bayar: jumlahBayar,
+			kembalian: kembalian
+		};
+
+		// Send payment data to server
+		fetch('fungsi/payment/process_payment.php', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(paymentData)
+		})
+		.then(response => response.json())
+		.then(data => {
+			if (data.success) {
+				// Open print receipt in new tab
+				var printUrl = 'print.php?nm_member=<?php echo urlencode($_SESSION['admin']['nm_member']); ?>&bayar=' + 
+							encodeURIComponent(jumlahBayar) + '&kembali=' + encodeURIComponent(kembalian);
+				window.open(printUrl, '_blank');
+
+				// Reset cart
+				window.location.href = 'fungsi/hapus/hapus.php?penjualan=jual';
+			} else {
+				alert('Error: ' + data.message);
+			}
+		})
+		.catch(error => {
+			console.error('Error:', error);
+			alert('Terjadi kesalahan saat memproses pembayaran');
+		});
+	}
+
     // Fungsi untuk menangani klik tombol print
     function handleButtonClick() {
         // URL untuk cetak bukti pembayaran
