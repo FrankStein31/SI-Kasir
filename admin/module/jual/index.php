@@ -204,7 +204,7 @@ $hasil = $lihat->member_edit($id);
 	<div id="myModal" class="modal fade" role="dialog">
 		<div class="modal-dialog" style="display: flex; align-items: center; justify-content: center; min-height: 100vh;">
 			<!-- Modal content-->
-			<div class="modal-content" style="border-radius: 0px;">
+			<<div class="modal-content" style="border-radius: 0px;">
 				<div class="modal-header" style="background: #285c64; color: #fff;">
 					<h5 class="modal-title"><i class="fa fa-qrcode"></i> Scan QR</h5>
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -228,12 +228,22 @@ $hasil = $lihat->member_edit($id);
 					<p class="mt-3"><b>Total Harga:</b> Rp. <?php echo number_format($total_bayar); ?></p>
 				</div>
 				<div class="modal-footer">
-					<a class="btn btn-success"
-						href="fungsi/hapus/hapus.php?penjualan=jual">
-						<b>Selesai</b></a>
-					<!-- <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button> -->
+					<form method="POST" action="fungsi/payment/process_qr_payment.php">
+						<?php foreach ($hasil_penjualan as $isi) { ?>
+							<input type="hidden" name="id_barang[]" value="<?php echo $isi['id_barang']; ?>">
+							<input type="hidden" name="id_member[]" value="<?php echo $isi['id_member']; ?>">
+							<input type="hidden" name="jumlah[]" value="<?php echo $isi['jumlah']; ?>">
+							<input type="hidden" name="total1[]" value="<?php echo $isi['total']; ?>">
+							<input type="hidden" name="tgl_input[]" value="<?php echo $isi['tanggal_input']; ?>">
+							<input type="hidden" name="periode[]" value="<?php echo date('m-Y'); ?>">
+						<?php } ?>
+						<input type="hidden" name="total" value="<?php echo $total_bayar; ?>">
+						<input type="hidden" name="bayar" value="<?php echo $total_bayar; ?>">
+						<button type="submit" class="btn btn-success"><b>Selesai</b></button>
+					</form>
 				</div>
 			</div>
+			
 		</div>
 	</div>
 
